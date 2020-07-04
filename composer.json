@@ -1,5 +1,5 @@
 {
-    "name": "perspective/phpstan-magento2",
+    "name": "perspective_studio/phpstan-magento2",
     "description": "Extension for PHPStan to allow analysis of Magento2 code. Inspired by Magento 2.4 configuration",
     "type": "magento2-component",
     "version": "0.0.5",
