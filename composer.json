@@ -1,0 +1,28 @@
+{
+    "name": "perspective/phpstan-magento2",
+    "description": "Extension for PHPStan to allow analysis of Magento2 code. Inspired by Magento 2.4 configuration",
+    "type": "magento2-component",
+    "version": "0.0.5",
+    "require": {
+        "magento/magento2-base": "*",
+        "phpstan/phpstan": "*"
+    },
+    "license": "MIT",
+    "extra": {
+        "map": [
+            [
+                "phpstan.neon",
+                "phpstan.neon"
+            ],
+            [
+                "PhpStan/*",
+                "dev/tests/static/framework/Magento/PhpStan"
+            ]
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Magento\\PhpStan\\": "dev/tests/static/framework/Magento/PhpStan/"
+        }
+    }
+}

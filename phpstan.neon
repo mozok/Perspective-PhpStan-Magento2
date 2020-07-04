@@ -1,0 +1,37 @@
+parameters:
+	checkExplicitMixedMissingReturn: true
+	checkPhpDocMissingReturn: true
+	reportUnmatchedIgnoredErrors: false
+	excludes_analyse:
+		- %currentWorkingDirectory%/lib/internal/Magento/Framework/ObjectManager/Test/Unit/*
+		- %currentWorkingDirectory%/*/_files/*
+		- %currentWorkingDirectory%/dev/tests/*/Fixtures/*
+		- %currentWorkingDirectory%/dev/tests/*/tmp/*
+		- %currentWorkingDirectory%/dev/tests/*/_generated/*
+		- %currentWorkingDirectory%/pub/*
+	scanDirectories:
+		- %currentWorkingDirectory%/dev/tests/static/framework/tests/unit/testsuite/Magento
+		- %currentWorkingDirectory%/dev/tests/integration/framework/tests/unit/testsuite/Magento
+		- %currentWorkingDirectory%/dev/tests/api-functional/_files/Magento
+	bootstrapFiles:
+			- %currentWorkingDirectory%/dev/tests/static/framework/autoload.php
+			- %currentWorkingDirectory%/dev/tests/integration/framework/autoload.php
+			- %currentWorkingDirectory%/dev/tests/api-functional/framework/autoload.php
+			- %currentWorkingDirectory%/dev/tests/setup-integration/framework/autoload.php
+			- %currentWorkingDirectory%/dev/tests/static/framework/Magento/PhpStan/autoload.php
+	ignoreErrors:
+	    # Ignore PHPStan\Rules\Classes\UnusedConstructorParametersRule
+		- '#Constructor of class [a-zA-Z0-9\\_]+ has an unused parameter#'
+		# Ignore setCustomErrorHandler function not found in bootstrap files
+		- '#Function setCustomErrorHandler not found#'
+		# Ignore 'return statement is missing' error when 'void' is present in return type list
+		- '#Method (?:.*?) should return (?:.*?)void(?:.*?) but return statement is missing.#'
+
+#services:
+#    errorFormatter.filtered:
+#        class: Magento\PhpStan\Formatters\FilteredErrorFormatter
+#        arguments:
+#            showTipsOfTheDay: false
+#            checkThisOnly: false
+#            inferPrivatePropertyTypeFromConstructor: true
+#            checkMissingTypehints: %checkMissingTypehints%
